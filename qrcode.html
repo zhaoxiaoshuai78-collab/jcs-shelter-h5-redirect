@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JCS避难场所固定二维码生成</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Microsoft YaHei", Arial, sans-serif;
+        background: #061527;
+        color: #f5fbff;
+      }
+
+      main {
+        width: min(92vw, 760px);
+        margin: 0 auto;
+        padding: 32px 0;
+      }
+
+      .card {
+        padding: 24px;
+        border: 1px solid rgba(32, 215, 255, 0.28);
+        border-radius: 24px;
+        background: rgba(12, 39, 67, 0.92);
+      }
+
+      input,
+      button {
+        width: 100%;
+        height: 46px;
+        border-radius: 12px;
+        font: inherit;
+      }
+
+      input {
+        margin: 14px 0;
+        padding: 0 12px;
+        border: 1px solid rgba(32, 215, 255, 0.28);
+        background: #081d32;
+        color: #f5fbff;
+      }
+
+      button {
+        border: 0;
+        background: linear-gradient(135deg, #2478ff, #20d7ff);
+        color: #fff;
+        font-weight: 800;
+      }
+
+      #qrcode {
+        display: grid;
+        place-items: center;
+        margin-top: 22px;
+        padding: 18px;
+        border-radius: 18px;
+        background: #fff;
+      }
+
+      p {
+        color: #b8cee5;
+        line-height: 1.7;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="card">
+        <h1>固定二维码生成</h1>
+        <p>默认读取 config.js 里的 publicUrl。部署后把地址改成真实公网地址，再生成二维码。</p>
+        <input id="urlInput" aria-label="二维码地址" />
+        <button id="generateButton" type="button">生成二维码</button>
+        <div id="qrcode"></div>
+      </section>
+    </main>
+
+    <script src="./assets/qrcode.min.js"></script>
+    <script src="./config.js"></script>
+    <script>
+      var input = document.getElementById("urlInput");
+      var container = document.getElementById("qrcode");
+      var button = document.getElementById("generateButton");
+
+      function render() {
+        container.innerHTML = "";
+        new QRCode(container, {
+          text: input.value,
+          width: 260,
+          height: 260,
+          correctLevel: QRCode.CorrectLevel.H
+        });
+      }
+
+      input.value = (window.JCS_REDIRECT_CONFIG && window.JCS_REDIRECT_CONFIG.h5.publicUrl) || location.href.replace(/qrcode\.html.*$/, "");
+      button.addEventListener("click", render);
+      render();
+    </script>
+  </body>
+</html>

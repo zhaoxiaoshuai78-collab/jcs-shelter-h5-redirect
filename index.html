@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <title>JCS避难场所 - 应急避难智能查询系统</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero-card">
+        <div class="grid-bg" aria-hidden="true"></div>
+
+        <header class="brand">
+          <img class="logo" src="./assets/logo.svg" alt="JCS避难场所 Logo" />
+          <div>
+            <p class="eyebrow">JCS EMERGENCY SHELTER</p>
+            <h1>JCS避难场所</h1>
+            <p class="subtitle">应急避难智能查询系统</p>
+          </div>
+        </header>
+
+        <div class="map-panel" aria-hidden="true">
+          <div class="map-line map-line-a"></div>
+          <div class="map-line map-line-b"></div>
+          <div class="map-pin pin-current"></div>
+          <div class="map-pin pin-shelter"></div>
+          <div class="route-dot route-dot-a"></div>
+          <div class="route-dot route-dot-b"></div>
+          <div class="route-dot route-dot-c"></div>
+        </div>
+
+        <section class="intro">
+          <p>
+            通过固定二维码进入本中转页，再由微信开放标签拉起当前配置的小程序页面，减少体验版二维码变化带来的传播失效问题。
+          </p>
+        </section>
+
+        <section class="launch-card">
+          <div class="status-row">
+            <span class="status-dot" id="statusDot"></span>
+            <span id="envText">正在检测微信环境...</span>
+          </div>
+
+          <div class="launch-zone" id="launchZone">
+            <wx-open-launch-weapp id="weappLauncher" username="" path="">
+              <script type="text/wxtag-template">
+                <style>
+                  .launch-button {
+                    width: 100%;
+                    height: 52px;
+                    border: 0;
+                    border-radius: 14px;
+                    background: linear-gradient(135deg, #0b72ff, #20d7ff);
+                    color: #ffffff;
+                    font-size: 17px;
+                    font-weight: 700;
+                    letter-spacing: 0;
+                    box-shadow: 0 14px 34px rgba(32, 144, 255, 0.28);
+                  }
+                </style>
+                <button class="launch-button">进入小程序</button>
+              </script>
+            </wx-open-launch-weapp>
+
+            <button class="fallback-button" id="fallbackButton" type="button">进入小程序</button>
+          </div>
+
+          <p class="wechat-tip" id="wechatTip">请使用微信打开</p>
+          <p class="path-preview" id="pathPreview"></p>
+        </section>
+
+        <section class="feature-grid" aria-label="系统能力">
+          <div class="feature-item">
+            <span>固定二维码</span>
+            <strong>长期有效</strong>
+          </div>
+          <div class="feature-item">
+            <span>动态路径</span>
+            <strong>按需跳转</strong>
+          </div>
+          <div class="feature-item">
+            <span>场景参数</span>
+            <strong>支持 scene</strong>
+          </div>
+          <div class="feature-item">
+            <span>统计扩展</span>
+            <strong>扫码记录</strong>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+    <script src="./config.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
