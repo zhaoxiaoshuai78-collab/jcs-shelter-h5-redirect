@@ -1,7 +1,7 @@
 window.JCS_REDIRECT_CONFIG = {
   h5: {
     // 部署后改为真实公网地址。固定二维码建议只编码这个 URL。
-    publicUrl: "https://example.com/h5-redirect/"
+    publicUrl: "https://zhaoxiaoshuai78-collab.github.io/jcs-shelter-h5-redirect/"
   },
 
   miniProgram: {
